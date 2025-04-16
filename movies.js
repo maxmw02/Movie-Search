@@ -1,21 +1,12 @@
-//www.omdbapi.com/?apikey=84eb025a&s=
-
 const movieList = document.querySelector(".movie__list");
-const searchInput = document.getElementById("search__input");
 
-function findMovies(searchInput) {
-  const searchValue = searchInput.value
-  renderMovies(searchValue)
+async function renderMovies() {
+  const searchInput = document.getElementById("search__input").value;
+  const res = await fetch(`http://www.omdbapi.com/?apikey=84eb025a&s=${searchInput || ""}`);
+  const result = await res.json();
+  const data = result.Search;
+  movieList.innerHTML = data.map((movie) => movieHtml(movie)).join("");
 }
-
-async function renderMovies(searchValue) {
-  const URL = `http://www.omdbapi.com/?apikey=84eb025a&s=${searchValue}`;
-  const res = await fetch(`${URL}`);
-  const data = await res.json();
-  movieList.innerHTML = data.map(movie => movieHtml(movie)).join('')
-}
-
-
 
 function movieHtml(movie) {
   return `<div class="movie">
@@ -25,61 +16,10 @@ function movieHtml(movie) {
               <div class="movie__description">
                 <div class="movie__title">${movie.Title}</div>
                 <div class="movie__year">${movie.Year}</div>
-                <div class="movie__imdbID">${movie.imdbID}</div>
+                <div class="movie__imdbID">imdbID: ${movie.imdbID}</div>
               </div>
-            </div>`
+            </div>`;
 }
-
-renderMovies(searchValue)
-
-
-// function displayMovies(movies) {
-//   movieList.innerHTML = "";
-//   for (let i = 0; i < movies.length; ++i) {
-//     let movieListItem = document.createElement("div");
-//     movieListItem.dataset.id = movies[i].imdbID;
-//     movieListItem.classList.add("movie");
-//     if (movies[i].poster != "N/A") {
-//       moviePoster = movies[i].Poster;
-//     } else {
-//       moviesPoster = "No_Image_Available.jpg";
-//     }
-//     movieListItem.innerHTML = `<div class="movie">
-//               <figure class="movie__img--wrapper">
-//                 <img class="movie__img" src="${moviePoster}">
-//               </figure>
-//               <div class="movie__description">
-//                 <div class="movie__title">${movies[i].Title}</div>
-//                 <div class="movie__year">${movies[i].Year}</div>
-//                 <div class="movie__imdbID">${movies[i].imdbID}</div>
-//               </div>
-//             </div>`;
-//             movieList.appendChild(movieListItem)
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // SLIDER
 
