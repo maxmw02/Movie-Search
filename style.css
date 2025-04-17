@@ -282,6 +282,37 @@ MOVIES
   text-align: center;
 }
 
+.movies__loading {
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 56px;
+  color: #8f8fff;
+}
+
+.movies__loading.display {
+  display: flex;
+}
+
+.loading {
+  display: none;
+}
+
+.fa-spinner {
+  animation: rotate 800ms infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .movie__list {
   display: flex;
   flex-wrap: wrap;

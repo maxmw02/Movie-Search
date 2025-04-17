@@ -47,7 +47,7 @@
                     type="text"
                     placeholder="Search.."
                   />
-                  <button class="search__btn click" onclick="renderMovies(event)">
+                  <button class="search__btn click" onclick="loadMovies()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
                 </div>
@@ -107,6 +107,9 @@
                 <option value="OLDEST_TO_NEWEST">Year, Oldest to Newest</option>
               </select>
             </div>
+          </div>
+          <div class="movies movies__loading">
+            <i class="fa-solid fa-spinner loading"></i>
           </div>
           <div class="movie__list">
             

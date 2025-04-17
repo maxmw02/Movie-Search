@@ -1,4 +1,17 @@
+let movies;
 const movieList = document.querySelector(".movie__list");
+
+async function loadMovies() {
+  const loader = document.querySelector('.movies__loading')
+  loader.classList.add('display')
+  if (!movies) {
+    movies = await renderMovies()
+  }
+  loader.classList.remove('display')
+}
+
+
+
 
 async function renderMovies() {
   const searchInput = document.getElementById("search__input").value;
