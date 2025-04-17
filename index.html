@@ -72,6 +72,7 @@
                     value="1950"
                     min="1950"
                     max="2025"
+                    onchange="filterMovies(event)"
                   />
                   <input
                     type="number"
@@ -79,6 +80,7 @@
                     value="2025"
                     min="1950"
                     max="2025"
+                    onchange="filterMovies(event)"
                   />
                   <div class="range">
                     <input
@@ -101,7 +103,7 @@
                   </div>
                 </div>
               </div>
-              <select class="filter">
+              <select class="filter" onchange="filterMovies(event)">
                 <option value disabled selected>Sort</option>
                 <option value="NEWEST_TO_OLDEST">Year, Newest to Oldest</option>
                 <option value="OLDEST_TO_NEWEST">Year, Oldest to Newest</option>

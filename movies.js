@@ -1,7 +1,8 @@
 let movies;
 const movieList = document.querySelector(".movie__list");
 
-async function loadMovies() {
+
+async function loadMovies(filter) {
   const loader = document.querySelector('.movies__loading')
   loader.classList.add('display')
   if (!movies) {
@@ -10,14 +11,17 @@ async function loadMovies() {
   loader.classList.remove('display')
 }
 
-
+function filterMovies(event) {
+  loadMovies(event.target.value)
+}
 
 
 async function renderMovies() {
+  movieList.innerHTML = ''
   const searchInput = document.getElementById("search__input").value;
   const res = await fetch(`http://www.omdbapi.com/?apikey=84eb025a&s=${searchInput || ""}`);
   const result = await res.json();
-  const data = result.Search;
+  let data = result.Search;
   movieList.innerHTML = data.map((movie) => movieHtml(movie)).join("");
 }
 
